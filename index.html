@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Happy 15th Birthday Sankalp Bro 🎉</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body, html {
+      height: 100%;
+      background: #2a001f;
+      color: #ff2f6c;
+      font-family: 'Share Tech Mono', monospace;
+      overflow: hidden;
+      user-select: none;
+      position: relative;
+    }
+
+    .page {
+      min-height: 100vh;
+      width: 100vw;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      position: absolute;
+      top: 0;
+      left: 0;
+      transition: opacity 1s ease-in-out;
+      padding: 20px;
+      background: radial-gradient(ellipse at 70% 40%, #660034 0%, #33001a 80%, #1a000d 100%);
+      box-shadow: 0 0 40px #ff2f6c44 inset;
+      border-radius: 20px;
+      color: #ff2f6c;
+      text-shadow:
+        0 0 9px #ff2f6ccc,
+        0 0 24px #ff2f6ccc;
+      z-index: 2;
+      text-align: center;
+    }
+    #page2 {
+      opacity: 0;
+      pointer-events: none;
+      z-index: 1;
+      padding: 20px;
+      box-shadow: 0 0 60px #ff2f6ccc inset;
+      border-radius: 20px;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+    #page2.active {
+      opacity: 1;
+      pointer-events: all;
+      z-index: 3;
+      box-shadow: 0 0 90px #ff2f6cee inset;
+      text-shadow:
+        0 0 15px #ff2f6c,
+        0 0 35px #ff2f6cbb;
+    }
+    h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 3em;
+      font-weight: 700;
+      margin-bottom: 18px;
+      color: inherit;
+      text-shadow: 0 0 14px currentColor, 0 0 28px currentColor;
+      line-height: 1.1;
+      animation: flicker 4s infinite;
+      letter-spacing: 2px;
+      z-index: 2;
+    }
+    p {
+      font-size: 1.22em;
+      line-height: 1.65;
+      max-width: 520px;
+      margin-bottom: 1.45em;
+      color: inherit;
+      text-shadow: 0 0 7px currentColor, 0 0 19px currentColor;
+      z-index: 2;
+    }
+    .signature {
+      font-size: 1em;
+      color: #ff7393cc;
+      margin-top: 8px;
+      font-family: 'Orbitron', monospace;
+      letter-spacing: 1.2px;
+      font-weight: 700;
+      z-index: 2;
+    }
+    button {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+      font-size: 2.2rem;
+      border: none;
+      border-radius: 50%;
+      width: 64px;
+      height: 64px;
+      cursor: pointer;
+      background: transparent;
+      color: inherit;
+      box-shadow: 0 0 32px currentColor;
+      transition: all 0.3s cubic-bezier(0.52, 1.45, 0.61, 1);
+      user-select: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      margin-top: 18px;
+      z-index: 2;
+    }
+    #page1 button:hover {
+      background: #ff2f6c;
+      color: #320011;
+      box-shadow:
+        0 0 48px #ff5c94;
+      transform: scale(1.12) rotate(5deg);
+    }
+    #page2 button {
+      font-size: 1.15rem;
+      border-radius: 50px;
+      padding: 14px 42px;
+      margin-top: 18px;
+      box-shadow: 0 0 22px currentColor;
+      width: auto;
+      height: auto;
+      display: inline-block;
+      cursor: pointer;
+      background: transparent;
+      color: inherit;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    #page2 button:hover {
+      background: #ff2f6c;
+      color: #320011;
+      box-shadow:
+        0 0 40px #ff5c94;
+      transform: scale(1.08) rotate(-1deg);
+    }
+    /* Balloon styling */
+    .balloon {
+      position: absolute;
+      bottom: -150px;
+      width: 50px;
+      height: 70px;
+      border-radius: 50% / 60%;
+      cursor: pointer;
+      z-index: 1;
+      box-shadow:
+        0 0 16px #ff2f6c88,
+        inset 0 4px 20px #ff7393aa;
+      animation-timing-function: linear;
+      filter: drop-shadow(0 0 8px #ff2f6c);
+      animation-name: float;
+      animation-iteration-count: infinite;
+      background: radial-gradient(circle at 40% 40%, #ff2f6c, #66001b);
+    }
+    .balloon::after {
+      content: '';
+      position: absolute;
+      width: 2px;
+      height: 50px;
+      background: white;
+      top: 70px;
+      left: 50%;
+      transform: translateX(-50%);
+      filter: drop-shadow(0 0 3px white);
+    }
+    @keyframes float {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(-110vh); opacity: 0; }
+    }
+    /* Neon flicker on headings */
+    @keyframes flicker {
+      0%,18%,22%,25%,53%,57%,100% {
+        opacity: 1;
+        text-shadow:
+          0 0 16px currentColor,
+          0 0 34px currentColor,
+          0 0 44px currentColor;
+      }
+      19%,21%,24%,55% {
+        opacity: 0.8;
+        text-shadow: none;
+      }
+    }
+    /* Circular image with Discord-style multi-colored animated outline */
+    #birthdayImage {
+      width: 180px;
+      height: 180px;
+      max-width: 90vw;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 30px;
+      position: relative;
+      z-index: 10;
+      filter: drop-shadow(0 0 18px #ff2f6cdd);
+      animation: pulseGlow 3.5s ease-in-out infinite;
+      border: 4px solid transparent;
+      box-shadow: 0 0 30px #ff2f6cbb inset;
+      /* Outline animation */
+      outline: 4px solid #ff2f6c;
+      animation-name: discordOutline;
+      animation-duration: 6s;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+    }
+    @keyframes pulseGlow {
+      0% {
+        filter: drop-shadow(0 0 18px #ff2f6cdd);
+      }
+      50% {
+        filter: drop-shadow(0 0 38px #ff4c8ecc);
+      }
+      100% {
+        filter: drop-shadow(0 0 18px #ff2f6cdd);
+      }
+    }
+    @keyframes discordOutline {
+      0% { outline-color: #ff2f6c; }
+      20% { outline-color: #ff599a; }
+      40% { outline-color: #ff3377; }
+      60% { outline-color: #cc2055; }
+      80% { outline-color: #ff2f6c; }
+      100% { outline-color: #ff2f6c; }
+    }
+    /* Arrow icon */
+    svg.arrow {
+      width: 32px;
+      height: 32px;
+      stroke: currentColor;
+      stroke-width: 4;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+      margin: 0 auto;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <!-- Page 1 -->
+  <div id="page1" class="page" aria-label="Landing page">
+    <h1>🎉 Sankalp Bro’s 15th Birthday 🎂</h1>
+    <p>Ready to see the surprise? Pop the balloons <br />then open it up!</p>
+    <button onclick="showPage2()" aria-label="Next page">
+      <svg class="arrow" viewBox="0 0 24 24">
+        <path d="M9 6l6 6-6 6" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Page 2 -->
+  <div id="page2" class="page" aria-label="Birthday wish page">
+    <img id="birthdayImage" src="https://i.postimg.cc/zDT4xFhn/Screenshot-2025-08-16-10-39-55-32-1c337646f29875672b5a61192b9010f9.jpg" alt="Birthday Image of Sankalp Bro" />
+    <h1>Happy 15th Birthday, Sankalp Bro!</h1>
+    <p>
+      To the real one — Sankalp Bro, the legend.<br />
+      Keep climbing higher, shining brighter, and living strong.<br />
+      This special 15th year is yours — filled with wins and unforgettable moments.
+    </p>
+    <p>
+      Remember: <strong>"Sankalp bro ke aage koi nahi."</strong> <br />
+      Boss mode activated, always.
+    </p>
+    <p class="signature">— Yogeshwar, Your Friend</p>
+    <button onclick="goBack()">Back</button>
+  </div>
+
+  <script>
+    const colors = ['#ff2f6c', '#ff5c94', '#ff0a54'];
+    const page1 = document.getElementById('page1');
+    for(let i=0; i<14; i++){
+      const balloon = document.createElement('div');
+      balloon.className = 'balloon';
+      balloon.style.left = `${Math.random() * 92}%`;
+      balloon.style.background = `radial-gradient(circle at 40% 40%, ${colors[Math.floor(Math.random()*colors.length)]}, #66001a)`;
+      balloon.style.animationDuration = `${(6 + Math.random() * 4).toFixed(2)}s`;
+      balloon.style.animationDelay = `${-Math.random() * 10}s`;
+      balloon.onclick = () => balloon.remove();
+      page1.appendChild(balloon);
+    }
+
+    function showPage2() {
+      const page1 = document.getElementById('page1');
+      const page2 = document.getElementById('page2');
+      page1.style.opacity = '0';
+      setTimeout(() => {
+        page1.style.display = 'none';
+        page2.style.display = 'flex';
+        page2.classList.add('active');
+        window.scrollTo(0, 0);
+      }, 900);
+    }
+
+    function goBack() {
+      const page2 = document.getElementById('page2');
+      page2.classList.remove('active');
+      setTimeout(() => {
+        page2.style.display = 'none';
+        const page1 = document.getElementById('page1');
+        page1.style.display = 'flex';
+        page1.style.opacity = '1';
+        window.scrollTo(0, 0);
+      }, 700);
+    }
+  </script>
+</body>
+</html>
